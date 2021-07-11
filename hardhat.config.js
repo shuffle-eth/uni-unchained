@@ -1,7 +1,27 @@
 require("@nomiclabs/hardhat-waffle");
 
-// This is a sample Hardhat task. To learn how to create your own go to
-// https://hardhat.org/guides/create-task.html
+
+const { TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD } = require("hardhat/builtin-tasks/task-names");
+const path = require("path");
+
+subtask(TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD, async (args, hre, runSuper) => {
+  if (args.solcVersion === "0.8.4") {
+    const compilerPath = path.join(__dirname, "node_modules/solc/soljson.js");
+
+    return {
+      compilerPath,
+      isSolcJs: true, // if you are using a native compiler, set this to false
+      version: args.solcVersion,
+      // this is used as extra information in the build-info files, but other than
+      // that is not important
+      longVersion: "custom-0.8.4"
+    }
+  }
+
+  // we just use the default subtask if the version is not 0.8.4
+  return runSuper();
+})
+
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   const accounts = await hre.ethers.getSigners();
 
