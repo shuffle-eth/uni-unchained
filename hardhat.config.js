@@ -1,5 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
-
+require("uniswap-v3-deploy-plugin");
 
 const { TASK_COMPILE_SOLIDITY_GET_SOLC_BUILD } = require("hardhat/builtin-tasks/task-names");
 const path = require("path");

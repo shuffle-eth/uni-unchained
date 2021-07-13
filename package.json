@@ -16,5 +16,8 @@
     "ethers": "^5.4.1",
     "hardhat": "^2.4.3",
     "solc": "^0.8.6"
+  },
+  "dependencies": {
+    "uniswap-v3-deploy-plugin": "^0.1.0"
   }
 }
